@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * @file
+ * Contains bootstrap_grid.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function bootstrap_grid_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the bootstrap_grid module.
+    case 'help.page.bootstrap_grid':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Bootstrap Grid') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function bootstrap_grid_theme() {
+  return [
+    'bootstrap_grid_views' => [
+      'variables' => [],
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for Views bootstrap grid templates.
+ *
+ * Default template: bootstrap-grid-views.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - view: A View object.
+ */
+function template_preprocess_bootstrap_grid_views(&$variables) {
+  $handler = $variables['view']->style_plugin;
+
+  $options = $handler->options;
+
+
+  $variables['attributes']['class'][] = 'bootstrap-grid';
+  $variables['attributes']['class'][] = 'row';
+
+  $variables['grid_classes'] = bootstrap_grid_build_classes($options);
+
+  template_preprocess_views_view_unformatted($variables);
+}
+
+function bootstrap_grid_build_classes($options) {
+  $css = array();
+
+
+  $devices = array(
+    'sm',
+    'md',
+    'lg'
+  );
+
+  foreach ($devices as $device) {
+    if ($options[$device]) {
+      $css[] = 'col-' . $device . '-' . $options[$device];
+    }
+
+  }
+  return $css;
+}

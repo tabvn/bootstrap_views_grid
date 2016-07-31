@@ -1,0 +1,14 @@
+{
+  "name": "drupal/bootstrap_grid",
+  "type": "drupal-module",
+  "description": "Bootstrap Grid",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/bootstrap_grid",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/bootstrap_grid",
+    "source": "http://cgit.drupalcode.org/bootstrap_grid"
+  },
+  "require": { }
+}

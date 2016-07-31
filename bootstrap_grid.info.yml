@@ -1,0 +1,7 @@
+name: Bootstrap Grid
+type: module
+description: Bootstrap Grid
+core: 8.x
+package: Tabvn
+dependencies:
+  - views
